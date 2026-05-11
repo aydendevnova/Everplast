@@ -399,6 +399,7 @@ func save_settings() -> void:
 	data.audio_value = float(audio_volume_slider.value)
 	data.music_enabled = music_volume_button.pressed
 	data.music_value = float(music_volume_slider.value)
+	print("Writing to disk...")
 	var file: File = File.new()
 	var __: int = file.open(FILE, File.WRITE)
 	file.store_string(to_json(data))
