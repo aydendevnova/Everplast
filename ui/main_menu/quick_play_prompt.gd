@@ -61,6 +61,7 @@ func hide_menu(alt_anim := false) -> void:
 
 	if not anim_player.is_playing() and not GlobalUI.menu == GlobalUI.Menus.QUICK_PLAY_PROMPT:
 		$BGBlur.hide()
+		hide()
 
 
 func _level_changed(_world: int, _level: int) -> void:

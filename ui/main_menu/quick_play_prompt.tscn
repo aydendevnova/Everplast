@@ -318,18 +318,18 @@ text = "quick_play.prompt_title"
 align = 1
 
 [node name="PromptText" type="Label" parent="Panel/VBoxContainer"]
-margin_top = 69.0
+margin_top = 45.0
 margin_right = 1440.0
-margin_bottom = 99.0
+margin_bottom = 75.0
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 8 )
 text = "quick_play.prompt_text"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 139.0
+margin_top = 90.0
 margin_right = 1440.0
-margin_bottom = 199.0
+margin_bottom = 150.0
 custom_constants/separation = 15
 alignment = 1
 __meta__ = {

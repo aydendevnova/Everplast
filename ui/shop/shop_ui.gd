@@ -58,6 +58,10 @@ func hide_menu() -> void:
 	if bought_something:
 		GlobalEvents.emit_signal("save_file_saved")
 		bought_something = false
+		
+	yield(anim_player, "animation_finished")
+	if not anim_player.is_playing() and not get_tree().paused and not GlobalUI.menu == GlobalUI.Menus.SHOP:
+		hide()
 
 
 func disable_buttons(exclude_back: bool = false) -> void:
@@ -146,36 +150,24 @@ func update_shop(items: Dictionary) -> void:
 		if not prev_focus == null:
 			prev_focus.grab_focus()
 
-#	# Button focuses
-#
-#	var button_count: int = items_vbox.get_children().size()
-#	var top_button: Button
-#	var bottom_button: Button
-#
-#	#loop through hidden buttons to get button count
-#	for item in items_vbox.get_children():
-#		if not item.visible:
-#			button_count -= 1
-#
-#	for item in items_vbox.get_children():
-#		if item.visible:
-#			top_button = item
-#			continue
-#
-#	# find bottom button
-#	var idx: int = 0
-#	for item in items_vbox.get_children():
-#		if item.visible:
-#			idx += 1
-#			if idx == button_count:
-#				bottom_button = item
-#				continue
-#
-#	print(button_count)
-#
-#	bottom_button.focus_neighbour_bottom = back_button.get_path()
-#	back_button.focus_neighbour_top = bottom_button.get_path()
-#	top_button.focus_neighbour_top = top_button.get_path()
+	# Fixes focus issues on controllers.
+	var top_button: Button = null
+	var bottom_button: Button = null
+	for button in items_vbox.get_children():
+		if button.visible and not button.disabled:
+			if top_button == null:
+				top_button = button
+			bottom_button = button
+
+	if bottom_button:
+		bottom_button.focus_neighbour_bottom = back_button.get_path()
+		back_button.focus_neighbour_top = bottom_button.get_path()
+	else:
+		back_button.focus_neighbour_top = back_button.get_path()
+
+	if top_button:
+		top_button.focus_neighbour_top = top_button.get_path()
+
 	loaded_shop = items
 
 	# Gems

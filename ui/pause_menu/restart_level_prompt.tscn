@@ -180,9 +180,6 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 1162.38, 37.3887 )
 mouse_filter = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BGBlur" parent="." instance=ExtResource( 9 )]
 visible = false

@@ -251,9 +251,8 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 134.0
-margin_right = 1152.0
-margin_bottom = 194.0
+margin_right = 1440.0
+margin_bottom = 60.0
 custom_constants/separation = 15
 alignment = 1
 __meta__ = {
@@ -261,8 +260,8 @@ __meta__ = {
 }
 
 [node name="No" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
-margin_left = 358.0
-margin_right = 556.0
+margin_left = 502.0
+margin_right = 700.0
 margin_bottom = 60.0
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath(".")
@@ -279,8 +278,8 @@ custom_styles/normal = ExtResource( 4 )
 text = "global.no"
 
 [node name="Yes" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
-margin_left = 571.0
-margin_right = 793.0
+margin_left = 715.0
+margin_right = 937.0
 margin_bottom = 60.0
 focus_neighbour_left = NodePath("../No")
 focus_neighbour_top = NodePath(".")

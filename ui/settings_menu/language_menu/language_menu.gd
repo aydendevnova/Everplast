@@ -57,6 +57,7 @@ func disable_buttons() -> void:
 
 
 func show_menu() -> void:
+	show()
 	enable_buttons()
 	anim_player.play("show")
 
@@ -70,6 +71,7 @@ func hide_menu() -> void:
 	yield(anim_player, "animation_finished")
 	if not anim_player.is_playing() and not GlobalUI.menu == GlobalUI.Menus.SETTINGS_GENERAL_LANGUAGE:
 		anim_player.play("RESET")
+		hide()
 
 
 func _ui_settings_language_pressed() -> void:

@@ -73,6 +73,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventKey or event is InputEventJoypadButton) \
 			and can_pass_pre_menu and GlobalUI.menu == GlobalUI.Menus.PRE_MAIN_MENU \
 			and Globals.game_state == Globals.GameStates.MENU:
+				
+		# saves user from getting stuck
+		if not play_button.has_focus() and not quick_play_button.has_focus() and not settings_button.has_focus() and not quit_button.has_focus():
+			play_button.grab_focus()
 		# fix for occuring in game???
 		if event is InputEventKey:
 			if not event.pressed: return
@@ -81,6 +85,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("fullscreen"):
 			return
 		go_to_main_menu()
+		
+		
 
 
 func _physics_process(_delta: float) -> void:

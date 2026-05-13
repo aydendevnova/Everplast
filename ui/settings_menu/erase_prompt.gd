@@ -34,6 +34,9 @@ func show_menu() -> void:
 func hide_menu() -> void:
 	anim_player.play_backwards("show")
 	disable_buttons()
+	yield(anim_player, "animation_finished")
+	if not anim_player.is_playing() and not get_tree().paused and not GlobalUI.menu == GlobalUI.Menus.SETTINGS_ERASE_ALL_PROMPT:
+		hide()
 
 
 func disable_buttons() -> void:

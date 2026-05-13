@@ -203,7 +203,6 @@ anchor_left = 0.03
 anchor_top = 0.095
 anchor_right = 0.975
 anchor_bottom = 0.885
-margin_left = -7.62939e-06
 margin_top = 1.52588e-05
 custom_styles/panel = ExtResource( 7 )
 __meta__ = {

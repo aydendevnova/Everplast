@@ -50,6 +50,7 @@ func hide_menu() -> void:
 	yield(anim_player, "animation_finished")
 	if not anim_player.is_playing() and not GlobalUI.menu == GlobalUI.Menus.PROFILE_SELECTOR_UPDATE_PROMPT:
 		$BGBlur.hide()
+		hide()
 
 
 func _ui_profile_selector_update_pressed() -> void:

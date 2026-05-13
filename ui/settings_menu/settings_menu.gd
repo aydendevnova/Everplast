@@ -218,11 +218,6 @@ func _input(_event: InputEvent) -> void:
 			get_tree().set_input_as_handled()
 		save_settings()
 
-		var file: File = File.new()
-		var __: int = file.open(FILE, File.WRITE)
-		file.store_string(to_json(data))
-		file.close()
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and (GlobalUI.menu == GlobalUI.Menus.SETTINGS\
@@ -392,13 +387,7 @@ func reset_file() -> void:
 
 func save_settings() -> void:
 	replace_device_maps()
-	data.button_hint = hint_button.pressed
-	data.fullscreen = fullscreen_button.pressed
-	data.vsync = vsync_button.pressed
-	data.audio_enabled = audio_volume_button.pressed
-	data.audio_value = float(audio_volume_slider.value)
-	data.music_enabled = music_volume_button.pressed
-	data.music_value = float(music_volume_slider.value)
+
 	print("Writing to disk...")
 	var file: File = File.new()
 	var __: int = file.open(FILE, File.WRITE)
@@ -406,11 +395,21 @@ func save_settings() -> void:
 	file.close()
 
 
-func apply_settings() -> void:
+func apply_settings(write_to_disk := false) -> void:
 	replace_device_maps()
 	update_toggle_buttons()
 	yield(get_tree(), "physics_frame")
-	save_settings()
+	if write_to_disk:
+		save_settings()
+		
+	data.button_hint = hint_button.pressed
+	data.fullscreen = fullscreen_button.pressed
+	data.vsync = vsync_button.pressed
+	data.audio_enabled = audio_volume_button.pressed
+	data.audio_value = float(audio_volume_slider.value)
+	data.music_enabled = music_volume_button.pressed
+	data.music_value = float(music_volume_slider.value)
+		
 	OS.window_fullscreen = data.fullscreen
 	OS.vsync_enabled = data.vsync
 	var env: WorldEnvironment = get_node(GlobalPaths.WORLD_ENVIRONMENT)
@@ -524,6 +523,8 @@ func previous_menu_back() -> void:
 func back() -> void:
 	if GlobalUI.menu_locked: return
 	GlobalEvents.emit_signal("ui_button_pressed", true)
+	
+	apply_settings()
 
 	match GlobalUI.menu:
 		GlobalUI.Menus.SETTINGS_GENERAL:
@@ -561,6 +562,7 @@ func back() -> void:
 		GlobalUI.Menus.SETTINGS:
 			GlobalEvents.emit_signal("ui_settings_back_pressed")
 			hide_menu()
+			apply_settings(true)
 			if Globals.game_state == Globals.GameStates.MENU:
 				GlobalUI.menu = GlobalUI.Menus.MAIN_MENU
 			else:
@@ -1006,6 +1008,7 @@ func _erase_all_button_pressed() -> void:
 
 
 func _back_button_pressed() -> void:
+	print("back button pressed")
 	if GlobalUI.menu_locked: return
 	GlobalEvents.emit_signal("ui_button_pressed", true)
 	GlobalEvents.emit_signal("ui_settings_back_pressed")
@@ -1015,6 +1018,8 @@ func _back_button_pressed() -> void:
 	else:
 		GlobalUI.menu = GlobalUI.Menus.PAUSE_MENU
 	hide_menu()
+	
+	apply_settings(true)
 
 
 #

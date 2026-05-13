@@ -295,10 +295,11 @@ func update_inventory() -> void:
 			w_icon.hide()
 
 
-func update_button_focus(top_button: Button, bottom_button: Button = null) -> void:
+func update_button_focus(top_button: Button, _bottom_button: Button = null) -> void:
 	if top_button == null:
 		for button in upper_buttons.get_children():
-				button.focus_neighbour_bottom = button.get_path()
+			button.focus_neighbour_bottom = button.get_path()
+		fill_button.focus_neighbour_top = fill_button.get_path()
 		return
 
 	if top_button == stats_upgrade_button:
@@ -308,58 +309,55 @@ func update_button_focus(top_button: Button, bottom_button: Button = null) -> vo
 			else:
 				button.focus_neighbour_bottom = button.get_path()
 		return
-#	elif top_button == powerups_buttons_top_focus:
-#
 
 	var button_container: VBoxContainer
+	var tab_button: Button
 
 	if top_button == powerups_buttons_top_focus:
 		button_container = powerups_buttons
+		tab_button = top_powerup_button
 	elif top_button == equippables_buttons_top_focus:
 		button_container = equippables_buttons
+		tab_button = top_collectables_button
 
-	var index: int = button_container.get_children().size()
-
+	var visible_buttons: Array = []
 	for button in button_container.get_children():
 		button.focus_neighbour_left = button.get_path()
 		button.focus_neighbour_right = button.get_path()
-		if index == button_container.get_children().size():
-			continue
+		if button.visible:
+			visible_buttons.append(button)
 
-		button.focus_neighbour_top = button_container.get_child(index + 1).get_path()
-		button.focus_previous = button_container.get_child(index + 1).get_path()
-		if button_container.get_child(index - 2) == button:
-			button.focus_neighbour_top = button_container.get_child(index - 2).get_path()
-			button.focus_previous = button_container.get_child(index - 2).get_path()
+	for i in visible_buttons.size():
+		var btn: Button = visible_buttons[i]
+		if i == 0:
+			btn.focus_neighbour_top = tab_button.get_path()
+			btn.focus_previous = tab_button.get_path()
+		else:
+			btn.focus_neighbour_top = visible_buttons[i - 1].get_path()
+			btn.focus_previous = visible_buttons[i - 1].get_path()
 
-		index -= 1
+		if i == visible_buttons.size() - 1:
+			if button_container == powerups_buttons:
+				btn.focus_neighbour_bottom = fill_button.get_path()
+				btn.focus_next = fill_button.get_path()
+				fill_button.focus_neighbour_top = btn.get_path()
+			else:
+				btn.focus_neighbour_bottom = btn.get_path()
+				btn.focus_next = btn.get_path()
+		else:
+			btn.focus_neighbour_bottom = visible_buttons[i + 1].get_path()
+			btn.focus_next = visible_buttons[i + 1].get_path()
 
-	button_close.focus_neighbour_bottom = top_button.get_path()
+	var first_btn: Button = visible_buttons[0] if visible_buttons.size() > 0 else null
 
-	top_powerup_button.focus_neighbour_bottom = \
-			top_button.get_path()
+	for button in upper_buttons.get_children():
+		if first_btn:
+			button.focus_neighbour_bottom = first_btn.get_path()
+		else:
+			button.focus_neighbour_bottom = button.get_path()
 
-	top_collectables_button.focus_neighbour_bottom = \
-			top_button.get_path()
-
-
-	if not bottom_button == null:
-		bottom_button.focus_neighbour_bottom = \
-				bottom_button.get_path()
-		bottom_button.focus_next = \
-				bottom_button.get_path()
-
-	top_rank_button.focus_neighbour_bottom = \
-			top_button.get_path()
-	top_stats_button.focus_neighbour_bottom = top_button.get_path()
-
-	if top_button == powerups_buttons_top_focus:
-		#print(top_button)
-		top_button.focus_neighbour_top = top_powerup_button.get_path()
-
-
-	elif top_button == equippables_buttons_top_focus:
-		top_button.focus_neighbour_top = top_collectables_button.get_path()
+	if not first_btn and button_container == powerups_buttons:
+		fill_button.focus_neighbour_top = fill_button.get_path()
 
 
 func order_buttons(buttons: VBoxContainer, player_stat: String) -> void:
