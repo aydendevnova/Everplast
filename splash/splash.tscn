@@ -89,7 +89,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "splash_wraith"
-length = 1.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("CenterContainer/Label/Sprite:modulate")
 tracks/0/interp = 1
@@ -97,7 +97,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 1, 1.4 ),
+"times": PoolRealArray( 0, 0.3, 1.5, 1.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -109,7 +109,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 1, 1.4 ),
+"times": PoolRealArray( 0, 0.3, 1.5, 1.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.84, 0.84 ), Vector2( 0.84, 0.84 ), Vector2( 0.84, 0.84 ) ]
@@ -119,9 +119,6 @@ tracks/1/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )

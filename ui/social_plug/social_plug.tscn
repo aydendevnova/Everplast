@@ -97,9 +97,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_top = 0.77
@@ -112,21 +109,21 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 899.0
-margin_right = 1267.0
-margin_bottom = 180.0
+margin_left = 1400.0
+margin_right = 1584.0
+margin_bottom = 162.0
 mouse_filter = 2
 alignment = 2
 
 [node name="Web" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 142.0
-margin_right = 368.0
-margin_bottom = 180.0
+margin_top = 124.0
+margin_right = 184.0
+margin_bottom = 162.0
 alignment = 2
 
 [node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/Web"]
 modulate = Color( 0, 0.882353, 1, 0.607843 )
-margin_right = 320.0
+margin_right = 136.0
 margin_bottom = 38.0
 focus_mode = 0
 custom_constants/hseparation = 0
@@ -135,13 +132,13 @@ custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/disabled = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
-text = "sites.google.com/view/everplast"
+text = "aydenweb.com"
 flat = true
 
 [node name="Icon" type="Button" parent="HBoxContainer/VBoxContainer/Web"]
 modulate = Color( 1, 1, 1, 0.607843 )
-margin_left = 324.0
-margin_right = 368.0
+margin_left = 140.0
+margin_right = 184.0
 margin_bottom = 38.0
 focus_mode = 0
 icon = ExtResource( 5 )

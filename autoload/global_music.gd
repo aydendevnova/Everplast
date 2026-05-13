@@ -164,6 +164,8 @@ func _ready() -> void:
 	__ = GlobalEvents.connect("story_boss_activated", self, "_on_music_related_event")
 	__ = GlobalEvents.connect("story_boss_level_end_completed", self, "_on_music_related_event")
 	__ = GlobalEvents.connect("ui_pause_menu_return_prompt_yes_pressed", self, "_on_music_related_event")
+	
+	yield(GlobalEvents, "ui_faded")
 	call_deferred("update_music")
 
 

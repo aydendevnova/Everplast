@@ -64,5 +64,5 @@ func _ui_pause_menu_return_prompt_yes_pressed() -> void:
 
 func _web_button_pressed() -> void:
 	GlobalEvents.emit_signal("ui_button_pressed")
-	var __: int = OS.shell_open("https://sites.google.com/view/everplast")
+	var __: int = OS.shell_open("https://aydenweb.com")
 
