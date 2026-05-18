@@ -1,5 +1,6 @@
 extends Camera2D
 
+signal cutscene_finished()
 
 const MAX_OFFSET := Vector2(10000, 7500)
 
@@ -7,7 +8,7 @@ const DECAY: float = 0.8
 const MAX_ROLL: float = 0.1
 
 var trauma: float = 0.0
-var trauma_power: float = 2.5
+var trauma_power: float = 4.5
 var noise_y: int = 0
 
 onready var noise := OpenSimplexNoise.new()
@@ -15,10 +16,6 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
-	var __: int
-	__ = GlobalEvents.connect("story_boss_killed", self, "_story_boss_killed")
-	__ = GlobalEvents.connect("story_boss_camera_animated", self, "_story_boss_camera_animated")
-
 	noise.seed = randi()
 	noise.period = 4
 	noise.octaves = 2
@@ -48,16 +45,7 @@ func shake() -> void:
 	offset.y = MAX_OFFSET.y * amount * noise.get_noise_2d(noise.seed*3, noise_y)
 
 
-func _story_boss_killed(idx: int) -> void:
-	yield(GlobalEvents, "ui_dialogue_hidden")
-	yield(GlobalEvents, "ui_faded")
-	current = true
+func play_cutscene() -> void:
 	anim_player.play("cutscene")
 	yield(anim_player, "animation_finished")
-	GlobalEvents.emit_signal("story_boss_camera_animated", idx)
-
-
-
-func _story_boss_camera_animated(_idx: int) -> void:
-	set_trauma(0.14)
-
+	emit_signal("cutscene_finished")

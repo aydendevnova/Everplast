@@ -141,8 +141,7 @@ signal mob_used_springboard(amount, mob) #int, mob reference
 
 signal story_boss_activated(idx)
 signal story_boss_killed(idx)
-signal story_boss_camera_animated(idx)
-signal story_boss_level_end_completed(idx)
+signal story_boss_sequence_completed(idx)
 
 signal story_w3_attempt_beat()
 signal story_w3_fernand_anim_finished()

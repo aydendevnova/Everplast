@@ -397,7 +397,7 @@ func order_buttons(buttons: VBoxContainer, player_stat: String) -> void:
 					buttons.get_node(stat[0].capitalize()).grab_focus()
 				index -= 1
 
-	button_positions
+	# button_positions
 	var array_without_zeros := []
 	array_without_zeros.push_back(0)
 	for pos in button_positions:

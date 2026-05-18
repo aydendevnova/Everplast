@@ -23,11 +23,9 @@ func _ready() -> void:
 	__ = GlobalEvents.connect("level_completed", self, "_level_completed")
 	__ = GlobalEvents.connect("level_subsection_changed", self, "_level_subsection_changed")
 	__ = GlobalEvents.connect("player_died", self, "_player_died")
-	__ = GlobalEvents.connect("story_boss_killed", self, "_story_boss_killed")
-	__ = GlobalEvents.connect("story_boss_level_end_completed", self, "_story_boss_level_end_completed")
+	__ = GlobalEvents.connect("story_fernand_beat", self, "_story_fernand_beat")
 	__ = GlobalEvents.connect("story_w3_attempt_beat", self, "_story_w3_attempt_beat")
 	__ = GlobalEvents.connect("story_w3_fernand_anim_finished", self, "_story_w3_fernand_anim_finished")
-	__ = GlobalEvents.connect("story_fernand_beat", self, "_story_fernand_beat")
 	__ = GlobalEvents.connect("ui_profile_selector_profile_pressed", self, "_ui_profile_selector_profile_pressed")
 	__ = GlobalEvents.connect("ui_profile_selector_delete_prompt_yes_pressed", self, "_ui_profile_selector_delete_prompt_yes_pressed")
 	__ = GlobalEvents.connect("ui_pause_menu_return_prompt_yes_pressed", self, "_ui_pause_menu_return_prompt_yes_pressed")
@@ -213,27 +211,17 @@ func _player_died() -> void:
 		transition(false, true, true)
 
 
-func _story_boss_killed(_idx: int) -> void:
-	yield(GlobalEvents, "ui_dialogue_hidden")
-	transition()
+func _story_fernand_beat() -> void:
+	transition(true, true)
 
 
 func _story_w3_attempt_beat() -> void:
 	yield(GlobalEvents, "ui_dialogue_hidden")
 	transition()
 
-
-func _story_boss_level_end_completed(_idx: int) -> void:
-	transition()
-
-
+	
 func _story_w3_fernand_anim_finished() -> void:
 	transition()
-
-
-func _story_fernand_beat() -> void:
-	transition(true, true)
-
 
 
 func _ui_profile_selector_profile_pressed() -> void:

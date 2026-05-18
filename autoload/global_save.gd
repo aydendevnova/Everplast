@@ -330,21 +330,15 @@ func _player_collected_orb(amount: int) -> void:
 func _player_collected_gem(index: int) -> void:
 	index = int(clamp(index, 0, 2))
 	var gem_dict = get_stat("gems")
-	if str(GlobalLevel.current_world) in gem_dict:
-		for key in gem_dict.keys():
-			if int(key) == GlobalLevel.current_world:
-				if str(GlobalLevel.current_level) in gem_dict.get(key):
-					for level_key in gem_dict.get(key):
-						if level_key == str(GlobalLevel.current_level):
-							gem_dict[str(GlobalLevel.current_world)][str(GlobalLevel.current_level)][index] = true
-				else:
-					gem_dict[str(GlobalLevel.current_world)][str(GlobalLevel.current_level)] = [false, false, false]
-					gem_dict[str(GlobalLevel.current_world)][str(GlobalLevel.current_level)][index] = true
-	else:
-		gem_dict[str(GlobalLevel.current_world)] = {}
-		gem_dict[str(GlobalLevel.current_world)][str(GlobalLevel.current_level)] = [false, false, false]
-		gem_dict[str(GlobalLevel.current_world)][str(GlobalLevel.current_level)][index] = true
+	var world = str(GlobalLevel.current_world)
+	var level = str(GlobalLevel.current_level)
 
+	if not world in gem_dict:
+		gem_dict[world] = {}
+	if not level in gem_dict[world]:
+		gem_dict[world][level] = [false, false, false]
+
+	gem_dict[world][level][index] = true
 	set_stat("gems", gem_dict)
 
 

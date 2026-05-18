@@ -94,9 +94,8 @@ func _story_w3_attempt_beat() -> void:
 	GlobalUI.menu = GlobalUI.Menus.CUTSCENE
 	yield(GlobalEvents, "ui_faded")
 	#print("putting in cutscene - story w3 beat 2")
-	var fernand = load("res://mobs/fernand/fernand.tscn").instance()
-	fernand.is_end_version = true
-	get_tree().call_group("Cannon", "enable")
+	var fernand = load("res://mobs/fernand/fernand_final.tscn").instance()
+	
 	GlobalUI.menu = GlobalUI.Menus.CUTSCENE
 	add_child(fernand, true)
 	yield(GlobalEvents, "ui_faded")
@@ -112,6 +111,8 @@ func _story_w3_attempt_beat() -> void:
 	GlobalUI.menu = GlobalUI.Menus.NONE
 	GlobalLevel.in_boss = true
 	$BossComplete.current = false
+	
+	get_tree().call_group("Cannon", "enable")
 
 
 func upgrade_fernand() -> void:

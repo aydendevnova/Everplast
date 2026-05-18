@@ -280,7 +280,6 @@ func show_menu() -> void:
 	update_controllers()
 	update_connected_controllers()
 
-
 func hide_menu() -> void:
 	animation_player.play_backwards("show")
 	disable_buttons()

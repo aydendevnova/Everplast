@@ -38,6 +38,9 @@ func hide_menu() -> void:
 	get_tree().paused = false
 	return_button.disabled = true
 	anim_player.play_backwards("show")
+	yield(anim_player, "animation_finished")
+	if not anim_player.is_playing() and not get_tree().paused and not GlobalUI.menu == GlobalUI.Menus.LEVEL_UPGRADE_TUT:
+		hide()
 
 
 func _back_pressed() -> void:

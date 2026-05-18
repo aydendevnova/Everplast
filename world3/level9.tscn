@@ -190,6 +190,7 @@ position = Vector2( 4304, 344 )
 [node name="LevelEndTeleporter" parent="LevelComponents" instance=ExtResource( 14 )]
 visible = false
 position = Vector2( 5024, 488 )
+is_endgame_teleporter = true
 
 [node name="Gems" type="Node2D" parent="LevelComponents"]
 
@@ -1203,7 +1204,7 @@ pause_mode = 2
 position = Vector2( 128, 88 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1212,7 +1213,7 @@ pause_mode = 2
 position = Vector2( 400, 88 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1221,7 +1222,7 @@ pause_mode = 2
 position = Vector2( 696, 88 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1230,7 +1231,7 @@ pause_mode = 2
 position = Vector2( 992, 48 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1239,7 +1240,7 @@ pause_mode = 2
 position = Vector2( 1272, 24 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1248,7 +1249,7 @@ pause_mode = 2
 position = Vector2( 1560, 0 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1257,7 +1258,7 @@ pause_mode = 2
 position = Vector2( 1856, 8 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1266,7 +1267,7 @@ pause_mode = 2
 position = Vector2( 2152, 24 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1275,7 +1276,7 @@ pause_mode = 2
 position = Vector2( 2432, 16 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1284,7 +1285,7 @@ pause_mode = 2
 position = Vector2( 2728, 16 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1293,7 +1294,7 @@ pause_mode = 2
 position = Vector2( 3024, -17 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1302,7 +1303,7 @@ pause_mode = 2
 position = Vector2( 3576, -88 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1311,7 +1312,7 @@ pause_mode = 2
 position = Vector2( 3864, -152 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1320,7 +1321,7 @@ pause_mode = 2
 position = Vector2( 4160, -208 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1329,7 +1330,7 @@ pause_mode = 2
 position = Vector2( 4448, -256 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1338,7 +1339,7 @@ pause_mode = 2
 position = Vector2( 4720, -304 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1347,7 +1348,7 @@ pause_mode = 2
 position = Vector2( 4392, 408 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1356,7 +1357,7 @@ pause_mode = 2
 position = Vector2( 4416, 408 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1365,7 +1366,7 @@ pause_mode = 2
 position = Vector2( 4424, 376 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1374,7 +1375,7 @@ pause_mode = 2
 position = Vector2( 4512, 376 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1383,7 +1384,7 @@ pause_mode = 2
 position = Vector2( 4624, 392 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 
@@ -1392,7 +1393,7 @@ pause_mode = 2
 position = Vector2( 3288, -64 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
+preprocess = 2.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 10 )
 

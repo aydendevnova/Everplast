@@ -17,6 +17,7 @@ var upgrade_notification_showed := false
 var ui_slot_visible := false
 var powerup_slot_visible := false
 var bypass_visibility := false
+var pending_gems := [false, false, false]
 
 # Used to turn health counter red
 var low_health_rect_active := false
@@ -56,6 +57,7 @@ func _ready() -> void:
 	__ = GlobalEvents.connect("player_hurt_from_enemy", self, "_player_hurt_from_enemy")
 	__ = GlobalEvents.connect("player_used_powerup", self, "_player_used_powerup")
 	__ = GlobalEvents.connect("save_stat_updated", self, "_save_stat_updated")
+	__ = GlobalEvents.connect("save_file_saved", self, "_save_file_saved")
 	__ = GlobalEvents.connect("ui_pause_menu_return_prompt_yes_pressed", self, "_ui_pause_menu_return_prompt_yes_pressed")
 
 	hide()
@@ -279,18 +281,20 @@ func update_gems() -> void:
 		var gem_dict = GlobalSave.get_stat("gems")
 
 		for gem in gem_textures:
+			var slot = gem.get_parent()
+			var in_dict := false
 			if gem_dict.has(str(GlobalLevel.current_world)):
 				if gem_dict[str(GlobalLevel.current_world)].has(str(GlobalLevel.current_level)):
-					if gem_dict[str(GlobalLevel.current_world)][str(GlobalLevel.current_level)][index]:
-						if not gem.visible:
-							gem.show()
-							gem.get_node("AnimationPlayer").play("show")
-					else:
-						gem.hide()
-				else:
-					gem.hide()
+					in_dict = gem_dict[str(GlobalLevel.current_world)][str(GlobalLevel.current_level)][index]
+
+			if in_dict or pending_gems[index]:
+				if not gem.visible:
+					gem.show()
+					gem.get_node("AnimationPlayer").play("show")
+				slot.modulate = Color(1, 1, 1, 1) if not pending_gems[index] else Color(0.5, 0.5, 0.5, 0.7)
 			else:
 				gem.hide()
+				slot.modulate = Color(1, 1, 1, 1)
 			index += 1
 	else:
 		gem_container.hide()
@@ -361,6 +365,7 @@ func reset_hud_displays() -> void:
 
 
 func _level_changed(_world: int, _level: int) -> void:
+	pending_gems = [false, false, false]
 	powerup_slot.hide()
 	hide()
 	yield(GlobalEvents, "ui_faded")
@@ -417,7 +422,9 @@ func _player_collected_orb(_amount: int) -> void:
 	update_counters()
 
 
-func _player_collected_gem(_index: int) -> void:
+func _player_collected_gem(index: int) -> void:
+	index = int(clamp(index, 0, 2))
+	pending_gems[index] = true
 	update_gems()
 
 
@@ -438,6 +445,11 @@ func _player_used_powerup(item_name: String) -> void:
 
 
 func _save_stat_updated() -> void:
+	update_gems()
+
+
+func _save_file_saved(_silent: bool = false) -> void:
+	pending_gems = [false, false, false]
 	update_gems()
 
 

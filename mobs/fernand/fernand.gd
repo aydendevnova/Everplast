@@ -23,7 +23,6 @@ var current_speed: int = 0
 
 var facing_right: bool = true
 var active: bool = false
-var is_end_version: bool = false
 
 
 onready var mob_component: Node2D = $EnemyComponentManager
@@ -43,33 +42,21 @@ onready var ray_left: RayCast2D = $RayCastLeft
 func _ready() -> void:
 	var __: int
 	__ = GlobalEvents.connect("story_boss_activated", self, "_story_boss_activated")
-	__ = GlobalEvents.connect("story_w3_fernand_anim_finished", self, "_story_w3_fernand_anim_finished")
 	__ = mob_component.connect("died", self, "_died")
 	__ = mob_component.connect("hit", self, "_hit")
 
 	get_node("Position2D/Water Gun/EquippableBase").mode = 2
 
 	yield(get_tree(), "physics_frame")
-
 	rng.seed = 203
-
-	if is_end_version:
-		mob_component.health = 350
-		mob_component.max_health = 350
-		shoot_speed = 1
-		chase_speed = 300
-		fly_speed = 100
-		rng.seed = 99
-		$"Position2D/Water Gun".queue_free()
-		var gun = load("res://world_all/equippables/ice_gun.tscn").instance()
-		$Position2D.add_child(gun, true)
-		water_gun = gun.get_node("EquippableBase")
-		water_gun.mode = 2
 
 	$EnemyComponentManager/HurtArea.monitoring = false
 
 func _physics_process(_delta: float) -> void:
 	if not active: return
+
+	if not is_instance_valid(position_2d):
+		return
 
 	#update_gun_direction()
 	if facing_right and ray_right.is_colliding():
@@ -99,12 +86,17 @@ func _physics_process(_delta: float) -> void:
 	linear_velocity.x = lerp(linear_velocity.x, current_speed, 0.1)
 	linear_velocity = move_and_slide(linear_velocity, Vector2.UP)
 
-	position_2d.global_rotation = lerp_angle(position_2d.global_rotation, fake_pos.global_rotation, 30 * get_physics_process_delta_time())
+	if is_on_wall():
+		flip()
+
+	position_2d.global_rotation = lerp_angle(
+		position_2d.global_rotation,
+		fake_pos.global_rotation,
+		30 * get_physics_process_delta_time())
 
 
 func state_switching() -> void:
 	var prev_state: int = state
-
 
 	timer.start(rng.randf_range(0.5, 2))
 
@@ -121,11 +113,7 @@ func state_switching() -> void:
 	if state == States.FLY:
 		flip()
 
-	if state == States.FLY and is_end_version:
-		state = States.SHOOT_PLAYER
-
 	yield(timer, "timeout")
-
 	state_switching()
 
 
@@ -154,7 +142,9 @@ func chase_ai() -> void:
 
 
 func shoot_player_ai() -> void:
-	if not vis_noti.is_on_screen() and not is_end_version: return
+	if not vis_noti.is_on_screen():
+		return
+		
 	var look_pos: Vector2 = get_node(GlobalPaths.PLAYER).global_position + Vector2(6, 6)
 
 	var variation: float = rng.randf_range(-5, 5)
@@ -188,7 +178,8 @@ func update_gun_direction() -> void:
 
 
 func _story_boss_activated(idx: int) -> void:
-	if not idx == GlobalStats.Bosses.FERNAND: return
+	if not idx == GlobalStats.Bosses.FERNAND:
+		return
 
 	GlobalEvents.emit_signal("ui_dialogued", tr("fernand.intro_1"), NAME)
 	GlobalEvents.emit_signal("ui_dialogued", tr("fernand.intro_2"), NAME)
@@ -206,6 +197,23 @@ func _died() -> void:
 	if Globals.death_in_progress:
 		return
 
+	_play_death_effects()
+	
+	# Game can crash upon killing him if still processing physics while dying
+	set_physics_process(false)
+	set_process(false)
+
+	yield(get_tree().create_timer(0.5), "timeout")
+
+	GlobalEvents.emit_signal("story_boss_killed", GlobalStats.Bosses.FERNAND)
+	GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_1"), NAME)
+	GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_2"), NAME)
+	GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_3"), NAME)
+	GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_4"), NAME)
+	GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_5"), NAME)
+	
+
+func _play_death_effects() -> void:
 	$DeathSound.play()
 	$DeathAnimationPlayer.play("death")
 	$Position2D.hide()
@@ -214,50 +222,6 @@ func _died() -> void:
 	mob_component.set_process(false)
 	mob_component.set_physics_process(false)
 	mob_component.set_physics_process_internal(false)
-
-	yield(get_tree().create_timer(0.5), "timeout")
-
-	if is_end_version:
-		position_2d.queue_free()
-		get_tree().call_group("Cannon", "disable")
-		get_tree().call_group("Snowball", "destroy")
-		get_tree().paused = true
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_1"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_2"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_3"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_4"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_5"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_6"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_7"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_8"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_9"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_10"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_11"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_12"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.final_defeat_13"), NAME)
-		yield(get_tree(), "physics_frame")
-		get_tree().paused = true
-		yield(GlobalEvents, "ui_dialogue_hidden")
-		GlobalEvents.emit_signal("save_file_saved", true)
-		GlobalEvents.emit_signal("story_fernand_beat")
-		pause_mode = PAUSE_MODE_PROCESS
-		get_tree().paused = true
-		queue_free()
-	else:
-		GlobalEvents.emit_signal("story_boss_killed", GlobalStats.Bosses.FERNAND)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_1"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_2"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_3"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_4"), NAME)
-		GlobalEvents.emit_signal("ui_dialogued", tr("fernand.defeat_5"), NAME)
-	set_physics_process(false)
-	set_process(false)
-
-
-func _story_w3_fernand_anim_finished() -> void:
-	active = true
-	state_switching()
-
 
 func upgrade() -> void:
 	$EnemyComponentManager/HurtArea.monitoring = true

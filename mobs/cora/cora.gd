@@ -102,8 +102,7 @@ func start_boss() -> void:
 	for i in 10:
 		yield(get_tree(), "physics_frame")
 	GlobalEvents.emit_signal("ui_dialogued", tr("cora.destroy"), NAME)
-	#yield(GlobalEvents, "ui_dialogued")
-	#$Shield.hide()
+
 	$Shield/AnimationPlayer.play_backwards("use")
 	$EnemyComponentManager/HurtArea.set_deferred("monitoring", true)
 	for coll in $Shield/StaticBody2D.get_children():
@@ -121,7 +120,8 @@ func flip() -> void:
 
 
 func _story_boss_activated(idx: int) -> void:
-	if not idx == GlobalStats.Bosses.CORA: return
+	if not idx == GlobalStats.Bosses.CORA:
+		return
 
 	flip()
 	GlobalEvents.emit_signal("ui_dialogued", tr("cora.intro_1"), NAME)
@@ -151,6 +151,7 @@ func _died() -> void:
 	mob_component.set_physics_process_internal(false)
 	get_tree().call_group("Cannon", "disable")
 	get_tree().call_group("Snowball", "destroy")
+	
 	yield(get_tree().create_timer(0.5), "timeout")
 
 	GlobalEvents.emit_signal("story_boss_killed", GlobalStats.Bosses.CORA)
@@ -158,9 +159,9 @@ func _died() -> void:
 	GlobalEvents.emit_signal("ui_dialogued", tr("cora.defeat_2"), NAME)
 	GlobalEvents.emit_signal("ui_dialogued", tr("cora.defeat_3"), NAME)
 	GlobalEvents.emit_signal("ui_dialogued", tr("cora.defeat_4"), NAME)
+	
 	set_physics_process(false)
 	set_process(false)
-
 
 
 func _on_Timer_timeout() -> void:
