@@ -1217,7 +1217,6 @@ pause_mode = 2
 position = Vector2( 0, -240 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1225,7 +1224,6 @@ process_material = SubResource( 8 )
 position = Vector2( 296, -240 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1233,7 +1231,6 @@ process_material = SubResource( 8 )
 position = Vector2( 584, -240 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1241,7 +1238,6 @@ process_material = SubResource( 8 )
 position = Vector2( 872, -256 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1249,7 +1245,6 @@ process_material = SubResource( 8 )
 position = Vector2( 1160, -256 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1257,7 +1252,6 @@ process_material = SubResource( 8 )
 position = Vector2( 1448, -296 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1265,7 +1259,6 @@ process_material = SubResource( 8 )
 position = Vector2( 1616, -312 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1273,7 +1266,6 @@ process_material = SubResource( 8 )
 position = Vector2( 1912, -312 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1281,7 +1273,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2136, -376 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1289,7 +1280,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2352, -400 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1297,7 +1287,6 @@ process_material = SubResource( 8 )
 position = Vector2( 1800, -600 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1305,7 +1294,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2008, -616 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1313,7 +1301,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2240, -648 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1321,7 +1308,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2552, -688 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1329,7 +1315,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2384, -832 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1337,7 +1322,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2688, -832 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1345,7 +1329,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2984, -792 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1353,7 +1336,6 @@ process_material = SubResource( 8 )
 position = Vector2( 2976, -664 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1361,7 +1343,6 @@ process_material = SubResource( 8 )
 position = Vector2( 3272, -848 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1369,7 +1350,6 @@ process_material = SubResource( 8 )
 position = Vector2( 3272, -848 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1377,7 +1357,6 @@ process_material = SubResource( 8 )
 position = Vector2( 3272, -768 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1385,7 +1364,6 @@ process_material = SubResource( 8 )
 position = Vector2( 4528, -248 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1393,7 +1371,6 @@ process_material = SubResource( 8 )
 position = Vector2( 4824, -248 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1401,7 +1378,6 @@ process_material = SubResource( 8 )
 position = Vector2( 5120, -264 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1409,7 +1385,6 @@ process_material = SubResource( 8 )
 position = Vector2( 5408, -296 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1417,7 +1392,6 @@ process_material = SubResource( 8 )
 position = Vector2( 5664, -312 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1425,7 +1399,6 @@ process_material = SubResource( 8 )
 position = Vector2( 5952, -312 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1433,7 +1406,6 @@ process_material = SubResource( 8 )
 position = Vector2( 6224, -288 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )
 
@@ -1441,6 +1413,5 @@ process_material = SubResource( 8 )
 position = Vector2( 1944, -880 )
 amount = 300
 lifetime = 2.4
-preprocess = 40.0
 visibility_rect = Rect2( 0, 0, 300, 300 )
 process_material = SubResource( 8 )

@@ -242,10 +242,8 @@ func update_inventory() -> void:
 			if stats.size() > 0:
 				if index == 1:
 					powerups_buttons_bottom_focus = powerups_buttons.get_node(stat[0].capitalize())
-					#print("b: " + powerups_buttons_bottom_focus.name)
-				elif index == stats.size():
+				if index == stats.size():
 					powerups_buttons_top_focus = powerups_buttons.get_node(stat[0].capitalize())
-					#print("f: " + powerups_buttons_top_focus.name)
 		index -= 1
 
 	# Equippables
@@ -259,7 +257,7 @@ func update_inventory() -> void:
 			if stats.size() > 0:
 				if index == 1:
 					equippables_buttons_bottom_focus = equippables_buttons.get_node(stat[0].capitalize())
-				elif index == stats.size():
+				if index == stats.size():
 					equippables_buttons_top_focus = equippables_buttons.get_node(stat[0].capitalize())
 		index -= 1
 

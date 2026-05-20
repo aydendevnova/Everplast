@@ -235,9 +235,6 @@ custom_styles/disabled = ExtResource( 10 )
 custom_styles/normal = ExtResource( 10 )
 text = "Back"
 expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="Panel"]
 anchor_top = 0.01

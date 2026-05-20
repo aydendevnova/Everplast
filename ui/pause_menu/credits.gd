@@ -16,7 +16,7 @@ func _ready() -> void:
 	hide()
 
 	yield(get_tree(), "physics_frame")
-	var copyright: String = "%s\nCopyright (c) 2021-2022 WraithWinterly" % Globals.version_string
+	var copyright: String = "%s\nCopyright (c) 2021-2022 Ayden Springer" % Globals.version_string
 
 	credits.scroll_vertical = 0
 	var engine_string: String = Engine.get_version_info().string
@@ -32,7 +32,7 @@ func _ready() -> void:
 """%s
 ***All rights reserved.***
 
-Primary Developer: Ayden Springer, "WraithWinterly"
+Primary Developer: Ayden Springer (aydenweb.com)
 
 This game uses Godot Engine %s
 	Copyright (c) 2007-2021 Juan Linietsky, Ariel Manzur.
